@@ -1,0 +1,195 @@
+/* Base setting, you can remove */
+* {
+    box-sizing: border-box;
+
+
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    position: fixed;
+    background-color: rgb(221, 221, 221);
+    width: 100%;
+    z-index: 999;
+}
+.wrapper nav {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 90px ;
+    padding: 0 50px 0 100px ;
+    justify-content: space-between;
+   align-items: center;
+}
+.logo h1 a{
+    font-size: 40px ;
+    font-weight: 900;
+    text-decoration: none;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 20px;
+    z-index: 1;
+
+}
+
+.menu-item:not(:first-child) {
+    margin-left: 15px;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-item.has-child {
+    position: relative;
+}
+
+.menu-item.has-child:hover .menu-child {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-child {
+    --top-space: 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    list-style: none;
+    transform: translateY(var(--top-space));
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.menu-child:before {
+    content: "";
+    height: var(--top-space);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.menu-child {
+    border: 1px solid #eee;
+    min-width: 250px;
+}
+
+.menu-child-link {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+.menu li label {
+    display: none;
+}
+.menu li a:hover,
+.menu li label:hover{
+    color: coral;
+
+    transition: all .3s;
+}
+.wrapper .menu-icon {
+    color: rgb(133, 61, 61);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 70px;
+    width: 70px;
+    text-align: center;
+}
+
+.wrapper .menu-icon {
+    display: none;
+}
+
+.wrapper input[type="checkbox"] {
+    display: none;
+}
+
+
+
+
+/* */
+@media   (max-width: 920px ) {
+    .wrapper .menu-icon{
+        display: block ;
+    }
+    .wrapper nav {
+        padding: 0 20px;
+    }
+    nav .logo {
+        position: relative;
+        max-width: 350px ;
+    }
+    /* làm dấu X biến mất thanh menu đi */
+    .wrapper #show-menu:checked~.menu-icon i::before{
+        content: '\f00d';
+    }
+
+    nav .menu{
+        position: absolute;
+        display: block;
+        background: #f8f5f5f7;
+        height: 200vh;
+        width: 100%;
+        top: 90px;
+        left: -100%;
+        margin-left: 0;
+        max-width: 100%;
+        overflow-y: auto;
+        padding-bottom: 100px;
+        transition: all 0.3s ease;
+        z-index: 3;
+    }
+    nav #show-menu:checked~.menu {
+        left: 0%;
+    }
+    .menu li {
+        margin: 15px 20px ;
+    }
+    .menu li a , .menu li label {
+        width: 100%;
+        line-height: 40px;
+        font-size: 18px;
+        font-weight: 800;
+        display: block;
+        margin: 0 auto;
+        padding:10px ;
+        cursor: pointer;
+        text-align: center;
+    }
+    .menu li .menu-link{
+        display: none;
+    }
+    .menu ul {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        background: none;
+        max-height: 0px;
+        overflow: hidden;
+        z-index: 3;
+    }
+    .menu #show-item1:checked~ul,
+    .menu #show-item2:checked~ul,
+    .menu #show-item3:checked~ul,
+    .menu #show-item4:checked~ul{
+        max-height: 100vh;
+    }
+    .menu-child li a{
+        padding: 20px;
+    }
+
+}
